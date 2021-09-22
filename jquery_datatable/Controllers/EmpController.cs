@@ -18,6 +18,21 @@ namespace jquery_datatable.Controllers
             return View(db.Emps.ToList());
         }
 
+
+        public ActionResult Create()
+        {
+             return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(Emp emp)
+        {
+            db.Emps.Add(emp);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Edit(int? id)
         {
             var data = db.Emps.Where(x => x.EmpId == id).FirstOrDefault();

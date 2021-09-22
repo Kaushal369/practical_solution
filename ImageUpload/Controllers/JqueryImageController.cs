@@ -28,15 +28,15 @@ namespace ImageUpload.Controllers
             
                 if (file != null)
                 {
-
-                    file.SaveAs(Server.MapPath("~/Images" + file.FileName));
+                // modifty server path on 22-09-2021
+                    file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
 
 
                     ImageUpload.Models.ImageUpload img = new ImageUpload.Models.ImageUpload();
 
                     img.StudentName = file.FileName;
 
-                    img.Image_path = "/Image/" + file.FileName;
+                    img.Image_path = "~/Images/" + file.FileName;
 
                     db.ImageUploads.Add(img);
                     db.SaveChanges();
