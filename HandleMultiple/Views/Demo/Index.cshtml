@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    <b> Enter Number1:</b> @Html.TextBox("Num1", Request["Num1"])
+    <br />
+    <br />
+
+    <b> Enter Number2:</b> @Html.TextBox("Num2", Request["Num2"])
+    <br />
+    <br />
+
+    <input type="submit" value="Add" name="Command" />
+    <input type="submit" value="Sub" name="Command" />
+    <input type="submit" value="Mul" name="Command" />
+    <input type="submit" value="Div" name="Command" />
+}
+
+@{ 
+
+    if(IsPost)
+    {
+        float num1 = float.Parse(Request["Num1"]);
+
+        float num2 = float.Parse(Request["Num2"]);
+
+        float result = 0;
+
+
+        switch(Request["Command"])
+        {
+            case "Add":
+                result = num1 + num2;
+                break;
+
+
+            case "Sub":
+                result = num1 - num2;
+                break;
+
+            case "Mul":
+                result = num1 * num2;
+                break;
+
+            case "Div":
+                result = num1 / num2;
+                break;
+        }
+        <br />
+        <p style="border:2px solid green"><b>@result&nbsp;</b></p>
+
+    }
+
+}

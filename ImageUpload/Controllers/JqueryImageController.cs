@@ -30,21 +30,24 @@ namespace ImageUpload.Controllers
                 {
                 // modifty server path on 22-09-2021
                     file.SaveAs(Server.MapPath("~/Images/" + file.FileName));
-
-
                     ImageUpload.Models.ImageUpload img = new ImageUpload.Models.ImageUpload();
-
                     img.StudentName = file.FileName;
-
                     img.Image_path = "~/Images/" + file.FileName;
-
                     db.ImageUploads.Add(img);
                     db.SaveChanges();
                 }
-  
-       
+      
             return Json(file.FileName, JsonRequestBehavior.AllowGet);
 
+        }
+
+        public JsonResult ImageRetriver(string name)
+        {
+            Image_UploadDB db = new Image_UploadDB();
+
+            var path = db.ImageUploads.Where(x => x.Image_path == name);
+            
+            return Json(path, JsonRequestBehavior.AllowGet);
         }
 
     }
