@@ -4,7 +4,7 @@
 }
 
 <h2>Index</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Calculation", "Demo",FormMethod.Post))
 {
     <b> Enter Number1:</b> @Html.TextBox("Num1", Request["Num1"])
     <br />
@@ -18,9 +18,11 @@
     <input type="submit" value="Sub" name="Command" />
     <input type="submit" value="Mul" name="Command" />
     <input type="submit" value="Div" name="Command" />
+    <br /><br />
+    <b>Result:</b> @Html.TextBox("Result",(string)ViewBag.results)
 }
 
-@{ 
+@*@{ 
 
     if(IsPost)
     {
@@ -55,4 +57,4 @@
 
     }
 
-}
+}*@
